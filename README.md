@@ -21,3 +21,7 @@ cd mine
 mvn clean install -DskipTests=true
 
 mvn tomcat7:run -Denv=dev
+
+http://localhost:8080/Myproject/
+
+id = 1
