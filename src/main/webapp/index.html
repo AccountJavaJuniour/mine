@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style>
+            .width_div
+            {
+                width:100px;
+            }
+        </style>
+        <script src="javascript/jquery-3.2.1.min.js"> </script>
+        <script>
+            function get_info()
+            {
+                $.get( "/Myproject/NewServlet",{id:$("#id").val()}, function( data ) {
+                    
+                    alert( "Load was performed." );
+                    $("#data").val(data);
+                  });
+            }
+            function update_info()
+            {
+                 $.post( "/Myproject/NewServlet",{id:$("#id").val(),text:$("#data").val()}, function( data ) {
+                    
+                    alert( data );
+                    
+                  });
+            }
+        </script>
+    </head>
+    
+    <body>
+       
+        <div >
+         id: <input id="id" type="text"  class="width_div form-control" name="id"><br>
+         text: <input id="data" type="text"  class="width_div form-control" name="text"><br>
+        <button type="button" class="btn btn-success" onclick="get_info()" >Get info</button>
+        <button type="button" class="btn btn-primary" onclick="update_info()">Update</button>
+        </div>
+         
+    </body>
+</html>
