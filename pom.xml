@@ -109,6 +109,57 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>sql-maven-plugin</artifactId>
+                <version>1.5</version>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>5.1.9</version>
+                    </dependency>
+                </dependencies>
+
+                <configuration>
+                  <driver>com.mysql.jdbc.Driver</driver>
+                  <url>jdbc:mysql://localhost:3306/mine</url>
+                  <username>test</username>
+                  <password>test</password>
+                </configuration>
+
+                <executions>
+                   <execution>
+                    <id>install-table</id>
+                    <phase>install</phase>
+                    <goals>
+                      <goal>execute</goal>
+                    </goals>
+                    <configuration>
+                      <autocommit>true</autocommit>
+                      <sqlCommand>CREATE TABLE `data` (
+  `id` int(11) NOT NULL,
+  `name` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+                      </sqlCommand>
+                    </configuration>
+                     </execution>
+                    <execution>
+                    <id>insert-test-data</id>
+                    <phase>install</phase>
+                    <goals>
+                      <goal>execute</goal>
+                    </goals>
+                    <configuration>
+                      <autocommit>true</autocommit>
+                      <sqlCommand>INSERT INTO data (id,name) VALUES (1,'test');
+                      </sqlCommand>
+                    </configuration>
+                  </execution>
+                </executions>
+              </plugin>
         </plugins>
     </build>
 
