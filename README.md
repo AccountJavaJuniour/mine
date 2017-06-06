@@ -15,6 +15,9 @@
   
 ## Команды
 git clone https://github.com/AccountJavaJuniour/mine.git
+
 cd mine
+
 mvn clean install -DskipTests=true
+
 mvn tomcat7:run -Denv=dev
